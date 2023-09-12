@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
-    "apollo-server-express": "^3.12.1"
+    "apollo-server-express": "^2.15.0",
+    "install": "^0.13.0",
+    "npm": "^10.1.0"
   }
 }
