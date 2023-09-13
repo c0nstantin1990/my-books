@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
 
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -8,10 +8,14 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 
 const SavedBooks = () => {
-  const { data, refetch } = useQuery(GET_ME);
+  const { loading, data } = useQuery(GET_ME);
   const [deleteBook] = useMutation(REMOVE_BOOK);
   const userData = data?.me || {};
 
+  if (!userData?.username) {
+    return <h4>You need to be logged in to see this page!</h4>;
+  }
+  // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -43,10 +47,10 @@ const SavedBooks = () => {
     }
   };
 
-  useEffect(() => {
-    // Automatically refetch when userData.savedBooks changes
-    refetch();
-  }, [userData.savedBooks]);
+  // if data isn't here yet, say so
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
 
   return (
     <>
@@ -66,8 +70,8 @@ const SavedBooks = () => {
         <Row>
           {userData.savedBooks.map((book) => {
             return (
-              <Col md="4" key={book.bookId}>
-                <Card border="dark">
+              <Col md="4">
+                <Card key={book.bookId} border="dark">
                   {book.image ? (
                     <Card.Img
                       src={book.image}
