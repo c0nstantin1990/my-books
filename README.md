@@ -19,10 +19,19 @@ This app is a dynamic Google Books search engine revamped with GraphQL and Apoll
 ## Usage
 
 Main Page:
-![Main](/screenshots/main.jpeg)
+![Main Page](/screenshots/main.jpeg)
 
-Projects:
-![My Projects](/screenshots/user.jpeg)
+Book Search:
+![Search Book](/screenshots/search.jpeg)
+
+Saved Books:
+![Save Book](/screenshots/saved.jpeg)
+
+Delete a Book:
+![Delete Book](/screenshots/delete.jpeg)
+
+Users:
+![Users](/screenshots/cluster.jpeg)
 
 GitHub Repo: https://github.com/c0nstantin1990/my-books
 
